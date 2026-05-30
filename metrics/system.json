@@ -1,6 +1,8 @@
 {
- "cpu": 15,
- "memory": 30,
- "latency_ms": 50,
- "error_rate": 0.05
+  "active_users": 185,
+  "cpu": 94,
+  "memory": 91,
+  "db_connections": 198,
+  "db_connections_limit": 200,
+  "avg_response_ms": 4200
 }

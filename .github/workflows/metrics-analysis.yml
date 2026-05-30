@@ -1,4 +1,4 @@
-name: IA analisando métricas - aprovado pela IA
+name: IA analisando métricas
 
 on:
   workflow_dispatch:
@@ -29,7 +29,7 @@ jobs:
 
           echo "Lendo métricas..."
 
-          METRICS=$(cat metrics/system-aprovado.json | jq -c . | sed 's/"/\\"/g')
+          METRICS=$(cat metrics/system.json | jq -c . | sed 's/"/\\"/g')
 
           RESPONSE=$(curl -s https://api.groq.com/openai/v1/chat/completions \
             -H "Content-Type: application/json" \
@@ -39,8 +39,7 @@ jobs:
               \"messages\": [
                 {
                   \"role\": \"system\",
-                  \"content\": \"Você é um classificador binário. Responda APENAS 'APROVADO' ou 'REPROVADO'.\\nThresholds críticos:\\n- CPU >= 80% → REPROVADO\\n- Memory >= 85% → REPROVADO\\n- Latency >= 2000ms → REPROVADO\\n- Error Rate >= 5% → REPROVADO\\nExemplos:\\n{\\\"cpu\\\":15,\\\"memory\\\":30,\\\"latency_ms\\\":50,\\\"error_rate\\\":0.05} → APROVADO\\n{\\\"cpu\\\":90,\\\"memory\\\":50,\\\"latency_ms\\\":100,\\\"error_rate\\\":1} → REPROVADO\\nResponda com insights profundos sobre sua decisão\"
-                },
+                \"content\": \"Você é um classificador de métricas. Responda 'APROVADO' ou 'REPROVADO' Em caso de reprovado, faça uma análise.\nThresholds críticos:\n- Active Users >= 250 → REPROVADO\n- CPU >= 80% → REPROVADO\n- Memory >= 85% → REPROVADO\n- DB Connections >= 95% do limite → REPROVADO\n- Avg Response >= 2000ms → REPROVADO\nExemplos:\n{\\\"active_users\\\":120,\\\"cpu\\\":45,\\\"memory\\\":60,\\\"db_connections\\\":50,\\\"db_connections_limit\\\":200,\\\"avg_response_ms\\\":500} → APROVADO\n{\\\"active_users\\\":185,\\\"cpu\\\":94,\\\"memory\\\":91,\\\"db_connections\\\":198,\\\"db_connections_limit\\\":200,\\\"avg_response_ms\\\":4200} → REPROVADO\"},
                 {
                   \"role\": \"user\",
                   \"content\": \"$METRICS\"
