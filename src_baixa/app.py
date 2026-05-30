@@ -1,20 +1,14 @@
-def somar(a, b):
-    return a + b
+def calcular_rentabilidade(custo, venda):
+    if custo <= 0:
+        raise ValueError("Custo deve ser maior que zero")
 
-def dividir(a, b):
-    if b == 0:
-        raise ValueError("Não é possível dividir por zero")
-    return a / b
+    return ((venda - custo) / custo) * 100
 
-def verificar_numero(numero):
-    if numero > 0:
-        return "positivo"
-    elif numero < 0:
-        return "negativo"
-    else:
-        return "zero"
+def calcular_preco_venda(custo, markup):
+    if custo <= 0:
+        raise ValueError("Custo deve ser maior que zero")
 
-def eh_par(numero):
-    if numero % 2 == 0:
-        return True
-    return False
+    if markup < 0:
+        raise ValueError("Markup não pode ser negativo")
+
+    return custo * (1 + markup / 100)
