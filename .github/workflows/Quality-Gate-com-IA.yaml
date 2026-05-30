@@ -81,7 +81,7 @@ jobs:
               "messages": [
                 {
                   "role": "system",
-                  "content": "Você é um quality gate de pipeline CI/CD. Responda apenas APROVADO ou BLOQUEADO seguido de uma justificativa curta."
+                  "content": "Você é um quality gate de pipeline CI/CD. Responda APROVADO ou BLOQUEADO seguido de uma justificativa para apoio ao desenvolvedor."
                 },
                 {
                   "role": "user",
