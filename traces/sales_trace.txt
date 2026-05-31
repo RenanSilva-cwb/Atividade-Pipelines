@@ -1,0 +1,15 @@
+Portal de Vendas
+    ↓
+Serviço de Faturamento
+    ↓
+Validação de Estoque
+    ↓
+Consulta TGFEST
+    ↓
+Oracle Database
+
+Tempo Portal de Vendas: 25ms
+Tempo Serviço de Faturamento: 45ms
+Tempo Validação de Estoque: 80ms
+Tempo Consulta TGFEST: 5100ms
+Timeout no Oracle Database
